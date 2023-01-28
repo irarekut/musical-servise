@@ -7,7 +7,7 @@ function PlaylistItem(props) {
   return (
     <div className="playlist__item">
       <div className="playlist__track track">
-        <TrackTitle track={props.name} />
+        <TrackTitle track={props.name} add={props.addition} />
         <Author name={props.author} />
         <Album name={props.album} />
         <TrackTime time={props.time} />

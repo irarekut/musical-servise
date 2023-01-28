@@ -8,7 +8,8 @@ function TrackTitle(props) {
       </div>
       <div className="track__title-text">
         <a className="track__title-link" href="http://">
-          {props.track} <span className="track__title-span" />
+          {props.track} <span className="track__title-span">{props.add}</span>{' '}
+          <span className="track__title-span" />
         </a>
       </div>
     </div>
