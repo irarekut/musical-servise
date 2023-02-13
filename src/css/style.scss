@@ -75,10 +75,16 @@ body {
   cursor: pointer;
 }
 
+.centerblock__filter__modal li:hover {
+  cursor: pointer;
+  color: #d9b6ff;
+  text-decoration: underline 2px;
+}
+
 // ========== activ ========
 
 ._btn-text:active {
-  border-color: #ad61ff;
+  border-color: #690bcd;
   color: #ad61ff;
   cursor: pointer;
 }
@@ -96,6 +102,20 @@ body {
   cursor: pointer;
 }
 
+.filter__button.button-author._btn-text.active {
+  border-color: #ad61ff;
+  color: #ad61ff;
+}
+
+.filter__button.button-genre._btn-text.active {
+  border-color: #ad61ff;
+  color: #ad61ff;
+}
+
+.filter__button.button-year._btn-text.active {
+  border-color: #ad61ff;
+  color: #ad61ff;
+}
 // =================== main ====================//
 .main {
   flex: 1 1 auto;
@@ -264,6 +284,40 @@ body {
     &:not(:last-child) {
       margin-right: 10px;
     }
+  }
+
+  &__modal {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 248px;
+    height: 305px;
+    margin-top: 20px;
+    text-align: left;
+    line-height: 40px;
+    padding-left: 34px;
+    font-weight: 400;
+    font-size: 20px;
+    background: #313131;
+    border-radius: 12px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 34px;
+    gap: 10px;
+
+    position: absolute;
+    width: 248px;
+    height: 305px;
+    left: 386px;
+    top: 288px;
+
+    background: #313131;
+    border-radius: 12px;
   }
 }
 
@@ -715,5 +769,12 @@ body {
 
   &__progress-line {
     width: 109px;
+  }
+}
+
+.skeleton {
+  &__items {
+    display: flex;
+    flex-direction: row;
   }
 }
