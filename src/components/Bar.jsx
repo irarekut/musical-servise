@@ -1,6 +1,4 @@
-import 'react-loading-skeleton/dist/skeleton.css'
 import TrackPlay from './TrackPlay'
-// import SkeletonItems from './SkeletonItem'
 
 function Bar() {
   return (

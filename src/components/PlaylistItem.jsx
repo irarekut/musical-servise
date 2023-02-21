@@ -2,7 +2,7 @@
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import React from 'react'
-import SkeletonItems from './SkeletonItem'
+import SkeletonItems from './skeleton/SkeletonItem'
 import TrackTitle from './TrackTitle'
 import Author from './Author'
 import Album from './Album'
@@ -14,7 +14,7 @@ function PlaylistItem(props) {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false)
-    }, 5000)
+    }, 1000)
     return () => clearTimeout(timer)
   }, [])
 

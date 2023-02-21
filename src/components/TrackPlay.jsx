@@ -1,6 +1,6 @@
 import React from 'react'
 import { SkeletonTheme } from 'react-loading-skeleton'
-import SkeletonBar from './SkeletonBar'
+import SkeletonTrackPlay from './skeleton/SkeletonTrackPlay'
 
 function TrackPlay() {
   const [isLoading, setLoading] = React.useState(true)
@@ -16,7 +16,7 @@ function TrackPlay() {
     return (
       <div className="skeleton__track">
         <SkeletonTheme baseColor="#bbb4b4" highlightColor="#444">
-          <SkeletonBar />
+          <SkeletonTrackPlay />
         </SkeletonTheme>
       </div>
     )

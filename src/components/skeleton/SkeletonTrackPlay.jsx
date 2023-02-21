@@ -1,6 +1,6 @@
 import Skeleton from 'react-loading-skeleton'
 
-function SkeletonBar() {
+function SkeletonTrackPlay() {
   return (
     <div className="skeleton__bar">
       <div
@@ -36,4 +36,4 @@ function SkeletonBar() {
   )
 }
 
-export default SkeletonBar
+export default SkeletonTrackPlay
