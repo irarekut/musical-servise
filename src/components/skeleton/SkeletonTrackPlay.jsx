@@ -1,38 +1,19 @@
 import Skeleton from 'react-loading-skeleton'
+import * as S from './SkeletonTrackPlay.styled'
 
 function SkeletonTrackPlay() {
   return (
-    <div className="skeleton__bar">
-      <div
-        className="img"
-        style={{
-          gridArea: 'img',
-          display: 'block',
-          marginBottom: '10px',
-          marginRight: '294px',
-        }}
-      >
+    <S.bar>
+      <S.img>
         <Skeleton width={51} height={51} />
-      </div>
-      <div
-        className="row"
-        style={{
-          gridArea: 'track',
-          display: 'block',
-        }}
-      >
+      </S.img>
+      <S.track>
         <Skeleton width={100} height={19} />
-      </div>
-      <div
-        className="row"
-        style={{
-          gridArea: 'author',
-          display: 'block',
-        }}
-      >
+      </S.track>
+      <S.author>
         <Skeleton width={100} height={19} />
-      </div>
-    </div>
+      </S.author>
+    </S.bar>
   )
 }
 
