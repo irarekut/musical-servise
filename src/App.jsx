@@ -1,26 +1,23 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import Nav from './components/nav/nav'
-import CenterBlock from './components/centerBlock/CenterBlock'
-import Sidebar from './components/sideBar/sideBar'
-import Bar from './components/bar/Bar'
+import { BrowserRouter } from 'react-router-dom'
+
+import { AppRoutes } from './routes'
 import * as S from './App.styled'
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <S.GlobalStyle />
-      <S.wrapper>
-        <S.container>
-          <S.main>
-            <Nav />
-            <CenterBlock />
-            <Sidebar />
-          </S.main>
-          <Bar />
+      <S.App>
+        <S.wrapper>
+          <S.container>
+            <AppRoutes />
+          </S.container>
           <S.footer />
-        </S.container>
-      </S.wrapper>
-    </>
+        </S.wrapper>
+      </S.App>
+    </BrowserRouter>
   )
 }
 

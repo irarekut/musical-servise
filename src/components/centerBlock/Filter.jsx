@@ -41,11 +41,7 @@ function Filter() {
         {filterListData.map((filterItem) => (
           <S.button
             key={filterItem.filter}
-            className={
-              activeCategory === filterItem.filter
-                ? `filter__button button-${filterItem.filter} _btn-text active`
-                : `filter__button button-${filterItem.filter} _btn-text`
-            }
+            className={activeCategory === filterItem.filter ? `active` : ``}
             onClick={(e) => handleClickCategory(e, filterItem.filter)}
             role="presentation"
           >

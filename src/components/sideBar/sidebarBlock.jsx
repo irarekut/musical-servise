@@ -1,14 +1,17 @@
+/* eslint-disable react/jsx-curly-brace-presence */
+/* eslint-disable no-template-curly-in-string */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { Link } from 'react-router-dom'
 import SkeletonSideBar from '../skeleton/SkeletonSideBar'
-import playlist01 from '../../img/playlist01.png'
-import playlist02 from '../../img/playlist02.png'
-import playlist03 from '../../img/playlist03.png'
 import * as S from './sideBarBlock.styled'
+import { PLAYLISTS } from '../../constants/Playlists'
 
 function BarBlock() {
+  const PL = PLAYLISTS
   const [isLoading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
@@ -32,21 +35,13 @@ function BarBlock() {
   return (
     <S.block>
       <S.list>
-        <S.item>
-          <S.link href="#">
-            <S.img src={playlist01} alt="day's playlist" />
-          </S.link>
-        </S.item>
-        <S.item>
-          <S.link href="#">
-            <S.img src={playlist02} alt="day's playlist" />
-          </S.link>
-        </S.item>
-        <S.item>
-          <S.link href="#">
-            <S.img src={playlist03} alt="day's playlist" />
-          </S.link>
-        </S.item>
+        {PL?.map((play) => (
+          <S.item key={play.id}>
+            <Link to={`/playlist/${play.id}`}>
+              <S.img src={play.img} alt="day's playlist" />
+            </Link>
+          </S.item>
+        ))}
       </S.list>
     </S.block>
   )

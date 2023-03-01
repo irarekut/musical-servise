@@ -1,4 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import NavLink from './navLink'
 import logo from '../../img/logo.png'
 import * as S from './nav.styled'
 
@@ -9,9 +12,11 @@ function Nav() {
 
   return (
     <S.nav>
-      <S.logo>
-        <S.logoImage src={logo} alt="logo" />
-      </S.logo>
+      <Link to="/">
+        <S.logo>
+          <S.logoImage src={logo} alt="logo" />
+        </S.logo>
+      </Link>
       <S.burger onClick={toggleVisibility} role="presentation">
         <S.burgerLine />
         <S.burgerLine />
@@ -21,13 +26,13 @@ function Nav() {
         {!visible && (
           <S.menuList>
             <S.menuItem>
-              <S.menuLink href="http://">Главное</S.menuLink>
+              <NavLink address="/" text="Главное" />
             </S.menuItem>
             <S.menuItem>
-              <S.menuLink href="http://">Мой плейлист</S.menuLink>
+              <NavLink address="/mytracks" text="Мои треки" />
             </S.menuItem>
             <S.menuItem>
-              <S.menuLink href="http://">Войти</S.menuLink>
+              <NavLink address="/login" text="Войти" />
             </S.menuItem>
           </S.menuList>
         )}
