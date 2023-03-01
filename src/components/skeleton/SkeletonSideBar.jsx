@@ -1,33 +1,19 @@
 import Skeleton from 'react-loading-skeleton'
+import * as S from './SkeletonSideBar.styled'
 
 function SkeletonSideBar() {
   return (
-    <div className="skeleton__sidebar">
-      <div
-        className="left-col"
-        style={{
-          display: 'block',
-        }}
-      >
+    <S.Bar>
+      <S.col>
         <Skeleton width={250} height={150} />
-      </div>
-      <div
-        className="long-col"
-        style={{
-          display: 'block',
-        }}
-      >
+      </S.col>
+      <S.col>
         <Skeleton width={250} height={150} />
-      </div>
-      <div
-        className="long-col"
-        style={{
-          display: 'block',
-        }}
-      >
+      </S.col>
+      <S.col>
         <Skeleton width={250} height={150} />
-      </div>
-    </div>
+      </S.col>
+    </S.Bar>
   )
 }
 
