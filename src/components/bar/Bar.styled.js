@@ -181,5 +181,13 @@ export const progress = styled.div`
 `
 
 export const progressLine = styled.input`
+  appearance: none;
+  height: 0px;
   width: 109px;
+  border-radius: 12px;
+  background: #1a1a1a;
+  border: 2px solid #ffffff;
+  outline: none;
+  background: url('../../img/EllipseSound.png');
+  box-sizing: border-box;
 `
