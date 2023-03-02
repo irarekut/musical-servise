@@ -7,6 +7,7 @@ import Next from '../../img/icon/next.svg'
 import Repeat from '../../img/icon/repeat.svg'
 import Shuffle from '../../img/icon/shuffle.svg'
 import Vol from '../../img/icon/volume.svg'
+import Pause from '../../img/icon/pause.svg'
 
 const btn = {
   col: css`
@@ -54,10 +55,27 @@ export const content = styled.div`
   flex-direction: column;
 `
 
-export const playerProgress = styled.div`
+export const playerProgress = styled.input`
+  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   height: 5px;
   background: #2e2e2e;
+
+  &::-webkit-slider-thumb {
+    height: 0px;
+    width: 0px;
+  }
+
+  &:hover::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+  }
 `
 
 export const playerBlock = styled.div`
@@ -96,6 +114,10 @@ export const btnPlay = styled.div`
 `
 export function btnPlaySvg() {
   return <HandySvg src={Play} width="22" height="20" fill="#d9d9d9" />
+}
+
+export function btnPauseSvg() {
+  return <HandySvg src={Pause} width="15" height="19" fill="#d9d9d9" />
 }
 
 export const btnNext = styled.div`
@@ -181,6 +203,7 @@ export const progress = styled.div`
 `
 
 export const progressLine = styled.input`
+  -webkit-appearance: none;
   appearance: none;
   height: 0px;
   width: 109px;
@@ -188,6 +211,16 @@ export const progressLine = styled.input`
   background: #1a1a1a;
   border: 2px solid #ffffff;
   outline: none;
-  background: url('../../img/EllipseSound.png');
   box-sizing: border-box;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    background: #1a1a1a;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+  }
 `
