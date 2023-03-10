@@ -2,9 +2,11 @@ import React from 'react'
 import { SkeletonTheme } from 'react-loading-skeleton'
 import SkeletonTrackPlay from '../skeleton/SkeletonTrackPlay'
 import * as S from './TrackPlay.styled'
+import { useContextTheme } from '../../context/ContextTheme'
 
 function TrackPlay() {
   const [isLoading, setLoading] = React.useState(true)
+  const theme = useContextTheme()
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -22,14 +24,32 @@ function TrackPlay() {
   return (
     <S.trackPlay>
       <S.contain>
-        <S.image>
+        <S.image
+          style={{
+            backgroundColor: theme.theme.background,
+          }}
+        >
           <S.svg alt="music" />
         </S.image>
         <S.author>
-          <S.authorLink href="http://">Ты та...</S.authorLink>
+          <S.authorLink
+            style={{
+              color: theme.theme.color,
+            }}
+            href="http://"
+          >
+            Ты та...
+          </S.authorLink>
         </S.author>
         <S.album>
-          <S.albumLink href="http://">Баста</S.albumLink>
+          <S.albumLink
+            style={{
+              color: theme.theme.color,
+            }}
+            href="http://"
+          >
+            Баста
+          </S.albumLink>
         </S.album>
       </S.contain>
       <S.likeBar>

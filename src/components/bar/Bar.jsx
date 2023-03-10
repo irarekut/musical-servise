@@ -5,8 +5,10 @@ import useSound from 'use-sound'
 import TrackPlay from './TrackPlay'
 import * as S from './Bar.styled'
 import Song from '../../Bobby_Marleni_-_Dropin.mp3'
+import { useContextTheme } from '../../context/ContextTheme'
 
 function Bar() {
+  const theme = useContextTheme()
   const [isPlaying, setIsPlaying] = useState(false)
   const [Volume, setVolume] = useState(50)
   const [isSeconds, setSeconds] = useState([])
@@ -40,7 +42,12 @@ function Bar() {
   }, [sound])
 
   return (
-    <S.bar>
+    <S.bar
+      style={{
+        backgroundColor: theme.theme.colorNav,
+        color: theme.theme.color,
+      }}
+    >
       <audio controls ref={audioRef} style={{ display: 'none' }}>
         <track href={Song} type="audio/mpeg" />
       </audio>

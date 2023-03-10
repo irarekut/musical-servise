@@ -4,23 +4,48 @@ import { Link } from 'react-router-dom'
 import NavLink from './navLink'
 import logo from '../../img/logo.png'
 import * as S from './nav.styled'
+import { useContextTheme, themes } from '../../context/ContextTheme'
+import { SwitcherTheme } from '../../context/switcherTheme'
+import LogoBlack from '../technicalComps/logoBlack'
 
 function Nav() {
+  const theme = useContextTheme()
+
   const [visible, setVisible] = useState(true)
 
   const toggleVisibility = () => setVisible(!visible)
 
   return (
-    <S.nav>
+    <S.nav
+      style={{
+        backgroundColor: theme.theme.colorNav,
+      }}
+    >
       <Link to="/">
         <S.logo>
-          <S.logoImage src={logo} alt="logo" />
+          {themes.dark === useContextTheme().theme ? (
+            <S.logoImage src={logo} alt="logo" />
+          ) : (
+            <LogoBlack style={{ width: '113.33px', height: '17px' }} />
+          )}
         </S.logo>
       </Link>
       <S.burger onClick={toggleVisibility} role="presentation">
-        <S.burgerLine />
-        <S.burgerLine />
-        <S.burgerLine />
+        <S.burgerLine
+          style={{
+            backgroundColor: theme.theme.color,
+          }}
+        />
+        <S.burgerLine
+          style={{
+            backgroundColor: theme.theme.color,
+          }}
+        />
+        <S.burgerLine
+          style={{
+            backgroundColor: theme.theme.color,
+          }}
+        />
       </S.burger>
       <S.menu>
         {!visible && (
@@ -34,6 +59,7 @@ function Nav() {
             <S.menuItem>
               <NavLink address="/login" text="Войти" />
             </S.menuItem>
+            <SwitcherTheme />
           </S.menuList>
         )}
       </S.menu>
