@@ -8,13 +8,13 @@ export const block = styled.div`
   justify-content: flex-start;
 `
 
-export const list = styled.div`
+export const list = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
 `
 
-export const item = styled.div`
+export const item = styled.ul`
   width: 250px;
   height: 150px;
 

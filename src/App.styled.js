@@ -45,6 +45,8 @@ body {
   color: #ffffff;
 }`
 
+export const App = styled.div``
+
 export const wrapper = styled.div`
   width: 100%;
   min-height: 100%;
@@ -57,12 +59,6 @@ export const container = styled.div`
   margin: 0 auto;
   position: relative;
   background-color: #181818;
-`
-export const main = styled.main`
-  flex: 1 1 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
 `
 
 export const footer = styled.footer``
