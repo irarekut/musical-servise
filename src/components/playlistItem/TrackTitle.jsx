@@ -1,15 +1,25 @@
 import * as S from './TrackTitle.styled'
+import { useContextTheme } from '../../context/ContextTheme'
 
 function TrackTitle(props) {
+  const theme = useContextTheme()
+
   return (
     <S.title>
-      <S.titleImage>
-        <S.titleSvg alt="music">
-          <use xlinkHref="img/icon/sprite.svg#icon-note" />
-        </S.titleSvg>
+      <S.titleImage
+        style={{
+          backgroundColor: theme.theme.background,
+        }}
+      >
+        <S.NoteSvg alt="music" />
       </S.titleImage>
       <S.titleText>
-        <S.titleLink href="http://">
+        <S.titleLink
+          style={{
+            color: theme.theme.color,
+          }}
+          href="http://"
+        >
           {props.track} <S.titleSpan>{props.add}</S.titleSpan>
         </S.titleLink>
       </S.titleText>

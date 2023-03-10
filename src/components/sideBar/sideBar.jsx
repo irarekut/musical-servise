@@ -1,11 +1,24 @@
 import BarBlock from './sidebarBlock'
 import * as S from './sideBar.styled'
+import { useContextTheme } from '../../context/ContextTheme'
 
 function Sidebar() {
+  const theme = useContextTheme()
   return (
-    <S.sidebar>
+    <S.sidebar
+      style={{
+        backgroundColor: theme.theme.background,
+        color: theme.theme.color,
+      }}
+    >
       <S.personal>
-        <S.name>Sergey.Ivanov</S.name>
+        <S.name
+          style={{
+            color: theme.theme.color,
+          }}
+        >
+          Sergey.Ivanov
+        </S.name>
         <S.avatar />
       </S.personal>
       <BarBlock />

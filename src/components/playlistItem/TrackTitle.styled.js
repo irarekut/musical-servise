@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components'
+import { HandySvg } from 'handy-svg'
+import Note from '../../img/icon/note.svg'
 
 const text = {
   col: css`
@@ -36,12 +38,17 @@ export const titleImage = styled.div`
   margin-right: 17px;
 `
 
-export const titleSvg = styled.svg`
-  width: 18px;
-  height: 17px;
-  fill: transparent;
-  stroke: #4e4e4e;
-`
+export function NoteSvg() {
+  return (
+    <HandySvg
+      src={Note}
+      width="18"
+      height="17"
+      fill="transparent"
+      stroke="#4e4e4e"
+    />
+  )
+}
 
 export const titleText = styled.div``
 

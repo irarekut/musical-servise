@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const container = styled.form`
+  padding-top: 43px;
   position: absolute;
   width: 366px;
   height: 439px;
@@ -12,6 +13,10 @@ export const container = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+
+export const wrapper = styled.div`
+  margin-top: 22px;
 `
 
 export const btnReg = styled.button`

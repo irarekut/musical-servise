@@ -37,20 +37,22 @@ function Login() {
   return (
     <S.container>
       <LogoBlack />
-      <Input
-        id="login"
-        type="text"
-        placeholder="Логин"
-        value={login}
-        onChange={(e) => setLogin(e.target.value)}
-      />
-      <Input
-        id="password"
-        type="password"
-        placeholder="Пароль"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <S.wrapper>
+        <Input
+          id="login"
+          type="text"
+          placeholder="Логин"
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
+        />
+        <Input
+          id="password"
+          type="password"
+          placeholder="Пароль"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </S.wrapper>
       <BtnLogin onClick={handleLogin} btntext="Войти" />
       <S.btnReg onClick={handleRegistration}>Зарегистрироваться</S.btnReg>
     </S.container>

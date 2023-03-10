@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import Nav from '../../components/nav/nav'
 import CenterBlock from '../../components/centerBlock/CenterBlock'
 import Sidebar from '../../components/sideBar/sideBar'

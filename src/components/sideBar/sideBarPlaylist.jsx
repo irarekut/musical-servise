@@ -1,10 +1,21 @@
 import * as S from './sideBarPlaylist.styled'
+import { useContextTheme, themes } from '../../context/ContextTheme'
 
 function SideBarPlaylist() {
+  const theme = useContextTheme()
   return (
-    <S.sidebar>
+    <S.sidebar
+      style={{
+        backgroundColor: theme.theme.background,
+        color: theme.theme.color,
+      }}
+    >
       <S.logOut>
-        <S.logOutSvg />
+        {themes.dark === useContextTheme().theme ? (
+          <S.logOutSvg />
+        ) : (
+          <S.logOutSvgBlack />
+        )}
       </S.logOut>
     </S.sidebar>
   )
