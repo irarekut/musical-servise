@@ -1,10 +1,10 @@
 import * as S from './TrackTime.styled'
 
 function TrackTime(props) {
+  const time = (props.time / 60).toFixed(2)
   return (
     <S.time>
-      <S.timeSvg alt="time" />
-      <S.timeText>{props.time}</S.timeText>
+      <S.timeText>{time}</S.timeText>
     </S.time>
   )
 }

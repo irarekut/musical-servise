@@ -6,18 +6,25 @@ import Bar from '../../components/bar/Bar'
 import * as S from './playlist.styled'
 import CenterBlock from '../../components/centerBlock/CenterBlock'
 import SideBarPlaylist from '../../components/sideBar/sideBarPlaylist'
-import { PLAYLISTS } from '../../constants/Playlists'
+import { useGetPlaylistsQuery } from '../../api/api'
 
 function Playlist() {
   const params = useParams()
+  const { data } = useGetPlaylistsQuery()
+  const plTitles = [
+    { id: 1, name: 'Плейлист дня ' },
+    { id: 2, name: '100 танцевальных хитов' },
+    { id: 3, name: 'Инди заряд' },
+  ]
 
-  const playlist = PLAYLISTS.find((p) => p.id === Number(params.id))
-
+  const PL = data.find((p) => p.id === Number(params.id))
+  const title = plTitles.find((p) => p.id === Number(params.id)).name
+  console.log(title)
   return (
     <S.container>
       <S.main>
         <Nav />
-        <CenterBlock tracks={playlist.tracks} />
+        <CenterBlock title={title} tracks={PL.items} />
         <SideBarPlaylist />
       </S.main>
       <Bar />

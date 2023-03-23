@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const container = styled.form`
+  padding-top: 23px;
   position: absolute;
   width: 366px;
   height: 439px;
@@ -12,4 +13,12 @@ export const container = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+
+export const ErrorMessage = styled.span`
+  color: red;
+  font-size: 12px;
+  text-align: center;
+  position: absolute;
+  max-width: 280px;
 `

@@ -4,7 +4,6 @@ import * as S from './switcherTheme.styled'
 
 export function SwitcherTheme() {
   const { toggleTheme } = useContextTheme()
-  console.log(useContextTheme().theme)
 
   return (
     <S.buttonTheme onClick={toggleTheme}>

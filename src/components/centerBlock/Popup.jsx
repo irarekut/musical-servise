@@ -1,11 +1,11 @@
-import PopupList from './popup.styled'
+import { useDispatch } from 'react-redux'
+import * as S from './popup.styled'
 import { useContextTheme } from '../../context/ContextTheme'
+import { isFilter, filterBy } from '../../store/slises/filter'
 
 function Popup(props) {
   const theme = useContextTheme()
-  const listItems = props.items.map((item) => (
-    <li key={item.toString()}>{item}</li>
-  ))
+  const dispatch = useDispatch()
 
   const coords = props.button.getBoundingClientRect()
 
@@ -16,10 +16,24 @@ function Popup(props) {
     color: theme.theme.color,
   }
 
+  const filterPopup = (e) => {
+    e.preventDefault()
+    dispatch(filterBy(e.target.textContent))
+    dispatch(isFilter())
+  }
+
   return (
-    <PopupList style={style}>
-      <ul>{listItems}</ul>
-    </PopupList>
+    <S.wrapper style={style}>
+      <S.PopupList>
+        <ul>
+          {props.items.map((item) => (
+            <li key={item.toString()}>
+              <S.popupLink onClick={filterPopup}>{item}</S.popupLink>
+            </li>
+          ))}
+        </ul>
+      </S.PopupList>
+    </S.wrapper>
   )
 }
 

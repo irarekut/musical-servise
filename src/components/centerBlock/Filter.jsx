@@ -1,15 +1,22 @@
+/* eslint-disable camelcase */
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import Popup from './Popup'
 import * as S from './filter.styled'
+import { useGetAllTracksQuery } from '../../api/api'
+import { filterCategory } from '../../store/slises/filter'
 
 function Filter() {
+  const { data } = useGetAllTracksQuery('')
+  const dispatch = useDispatch()
+
   const filterListData = [
     {
       filter: 'author',
       name: 'исполнителю',
     },
     {
-      filter: 'year',
+      filter: 'release_date',
       name: 'году выпуска',
     },
     {
@@ -22,6 +29,18 @@ function Filter() {
   const [filterButton, setFilterButton] = useState()
   const [categoryItems, setCategoryItems] = useState([])
 
+  const filterValues = {
+    author: [],
+    release_date: [],
+    genre: [],
+  }
+
+  filterValues.release_date = [
+    ...new Set(data?.map(({ release_date }) => release_date)),
+  ].filter((n) => n)
+  filterValues.author = [...new Set(data?.map(({ author }) => author))]
+  filterValues.genre = [...new Set(data?.map(({ genre }) => genre))]
+
   const handleClickCategory = (e, filterName) => {
     setFilterButton(e.target)
     if (activeCategory === filterName) {
@@ -31,7 +50,8 @@ function Filter() {
     }
 
     setActiveCategory(filterName)
-    setCategoryItems([1, 2, 3, 4].map((x) => `${filterName}_${x}`))
+    setCategoryItems(filterValues[filterName])
+    dispatch(filterCategory(filterName))
   }
 
   return (

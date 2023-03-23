@@ -1,114 +1,60 @@
-/* eslint-disable jsx-a11y/media-has-caption */
-import { useState, useRef, useEffect } from 'react'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import useSound from 'use-sound'
+import { useDispatch, useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useGetTrackByIdQuery } from '../../api/api'
 import TrackPlay from './TrackPlay'
 import * as S from './Bar.styled'
-import Song from '../../Bobby_Marleni_-_Dropin.mp3'
+import { getCurrentTrack } from '../../store/slises/player'
 import { useContextTheme } from '../../context/ContextTheme'
+import { BarProgress } from './barProgress'
+import { BarControls } from './barControls'
+import { BarVolume } from './barVolume'
 
 function Bar() {
   const theme = useContextTheme()
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [Volume, setVolume] = useState(50)
-  const [isSeconds, setSeconds] = useState([])
-  const audioRef = useRef(null)
+  const dispatch = useDispatch()
 
-  const [play, { pause, duration, sound }] = useSound([Song])
+  const isPlaying = useSelector((state) => state.player.isPlaying)
+  const currentTrackLink = useSelector((state) => state.player.currentTrackLink)
 
-  const togglePlay = () => {
-    if (isPlaying) {
-      pause()
-      setIsPlaying(false)
-    } else {
-      play()
-      setIsPlaying(true)
-    }
-  }
+  const trackId = useSelector((state) => state.player.id)
+  const isShow = useSelector((state) => state.player.showPlayer)
 
-  const onVolumeChange = (event) => {
-    const newVolume = event.target.value / 100
-    audioRef.current.volume = newVolume
-    setVolume(newVolume)
+  const { data } = useGetTrackByIdQuery(trackId)
+
+  const [track, setTrack] = useState(new Audio(currentTrackLink))
+
+  if (isPlaying) {
+    track.autoplay = true
   }
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (sound) {
-        setSeconds(sound.seek([]))
-      }
-    }, 1000)
-    return () => clearInterval(interval)
-  }, [sound])
+    dispatch(getCurrentTrack(data?.track_file))
+  }, [data])
+
+  useEffect(() => {
+    track.pause()
+    track.remove()
+
+    setTrack(new Audio(currentTrackLink))
+  }, [currentTrackLink])
 
   return (
     <S.bar
+      isPlaying={isShow}
       style={{
         backgroundColor: theme.theme.colorNav,
         color: theme.theme.color,
       }}
     >
-      <audio controls ref={audioRef} style={{ display: 'none' }}>
-        <track href={Song} type="audio/mpeg" />
-      </audio>
       <S.content>
-        <S.playerProgress
-          type="range"
-          min="0"
-          max={duration / 1000}
-          default="0"
-          value={isSeconds}
-          onChange={(e) => {
-            sound.seek([e.target.value])
-          }}
-        />
+        <BarProgress track={track} />
         <S.playerBlock>
           <S.player>
-            <S.playerControls>
-              <S.btnPrev>
-                <S.btnPrevSvg />
-              </S.btnPrev>
-              {isPlaying === true ? (
-                <S.btnPlay onClick={togglePlay} style={{ marginRight: '30px' }}>
-                  <S.btnPauseSvg alt="pause" />
-                </S.btnPlay>
-              ) : (
-                <S.btnPlay onClick={togglePlay}>
-                  <S.btnPlaySvg alt="play" />
-                </S.btnPlay>
-              )}
-              <S.btnNext>
-                <S.btnNextSvg alt="next" />
-              </S.btnNext>
-              <S.btnRepeat>
-                <S.btnRepeatSvg alt="repeat" />
-              </S.btnRepeat>
-              <S.btnShuffle>
-                <S.btnShuffleSvg alt="shuffle" />
-              </S.btnShuffle>
-            </S.playerControls>
+            <BarControls track={track} />
 
             <TrackPlay />
           </S.player>
-          <S.volume>
-            <S.volumeContent>
-              <S.volumeImage>
-                <S.volumeSvg alt="volume" />
-              </S.volumeImage>
-              <S.progress>
-                <S.progressLine
-                  type="range"
-                  name="range"
-                  min="0"
-                  max="100"
-                  step="1"
-                  value={Volume * 100}
-                  onChange={onVolumeChange}
-                />
-                <audio src={Song} controls style={{ display: 'none' }} />
-              </S.progress>
-            </S.volumeContent>
-          </S.volume>
+          <BarVolume track={track} />
         </S.playerBlock>
       </S.content>
     </S.bar>

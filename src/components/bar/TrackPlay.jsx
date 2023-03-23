@@ -1,19 +1,15 @@
-import React from 'react'
+import { useSelector } from 'react-redux'
 import { SkeletonTheme } from 'react-loading-skeleton'
+import { useGetTrackByIdQuery } from '../../api/api'
 import SkeletonTrackPlay from '../skeleton/SkeletonTrackPlay'
 import * as S from './TrackPlay.styled'
 import { useContextTheme } from '../../context/ContextTheme'
+import { LikeBar } from './likeBar'
 
 function TrackPlay() {
-  const [isLoading, setLoading] = React.useState(true)
+  const trackId = useSelector((state) => state.player.id)
+  const { data, isLoading, isSuccess } = useGetTrackByIdQuery(trackId)
   const theme = useContextTheme()
-
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-    return () => clearTimeout(timer)
-  }, [])
 
   if (isLoading)
     return (
@@ -31,35 +27,33 @@ function TrackPlay() {
         >
           <S.svg alt="music" />
         </S.image>
-        <S.author>
-          <S.authorLink
-            style={{
-              color: theme.theme.color,
-            }}
-            href="http://"
-          >
-            Ты та...
-          </S.authorLink>
-        </S.author>
-        <S.album>
-          <S.albumLink
-            style={{
-              color: theme.theme.color,
-            }}
-            href="http://"
-          >
-            Баста
-          </S.albumLink>
-        </S.album>
+        {isSuccess && (
+          <>
+            <S.author>
+              <S.authorLink
+                style={{
+                  color: theme.theme.color,
+                }}
+                href={data.track_file}
+              >
+                {data.name}
+              </S.authorLink>
+            </S.author>
+            <S.album>
+              <S.albumLink
+                style={{
+                  color: theme.theme.color,
+                }}
+                href={data.track_file}
+              >
+                {' '}
+                {data.author}
+              </S.albumLink>
+            </S.album>
+          </>
+        )}
       </S.contain>
-      <S.likeBar>
-        <S.like>
-          <S.likeSvg alt="like" />
-        </S.like>
-        <S.dislike>
-          <S.dislikeSvg alt="dislike" />
-        </S.dislike>
-      </S.likeBar>
+      <LikeBar />
     </S.trackPlay>
   )
 }
