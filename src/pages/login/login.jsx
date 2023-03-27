@@ -1,7 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Cookies from 'js-cookie'
+import { useDispatch } from 'react-redux'
+import { useUserLoginMutation, useUserTokenMutation } from '../../api/api'
+import { setLogin, setToken } from '../../store/slises/auth'
 import Input from '../../components/technicalComps/input'
 import LogoBlack from '../../components/technicalComps/logoBlack'
 import * as S from './login.styled'
@@ -10,40 +12,56 @@ import BtnLogin from '../../components/technicalComps/btn'
 function Login() {
   const navigate = useNavigate()
 
-  const [login, setLogin] = useState('')
+  const dispatch = useDispatch()
 
-  const [password, setPassword] = useState('')
-
-  const handleLogin = (event) => {
-    event.preventDefault()
-    const userLogin = login
-    const userPassword = password
-
-    console.log(userLogin, userPassword)
-
-    if (userLogin === 'user' && userPassword === '1234') {
-      Cookies.set('token', '1234')
-      navigate('/', { replace: true })
-    } else {
-      console.log('неправильный логин или пароль')
-    }
-  }
+  const [email, setEmail] = useState('iriri@gmail.com')
+  const [password, setPassword] = useState('1fleurforever')
 
   const handleRegistration = (event) => {
     event.preventDefault()
     navigate('/registration', { replace: true })
   }
 
+  const [login, { data, isSuccess, isLoading }] = useUserLoginMutation()
+  const [getToken, { data: token, error: tokenError }] = useUserTokenMutation()
+
+  const handleLogin = (event) => {
+    event.preventDefault()
+
+    if (!email || !password) {
+      alert('введите свой логин и пароль или зарегистрируйтесь')
+    } else {
+      login({
+        email,
+        password,
+      })
+      getToken({
+        email,
+        password,
+      })
+    }
+  }
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/')
+      document.cookie = `username=${data?.username}`
+      dispatch(setToken(token?.access))
+      document.cookie = `token=${token?.refresh}`
+      dispatch(setLogin())
+    }
+  }, [token])
+
   return (
     <S.container>
       <LogoBlack />
       <S.wrapper>
         <Input
-          id="login"
-          type="text"
+          id="email"
+          type="email"
           placeholder="Логин"
-          value={login}
-          onChange={(e) => setLogin(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <Input
           id="password"
@@ -53,7 +71,10 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </S.wrapper>
-      <BtnLogin onClick={handleLogin} btntext="Войти" />
+      {tokenError && <S.ErrorMessage>{tokenError.data.detail}</S.ErrorMessage>}
+      {!isLoading && <BtnLogin onClick={handleLogin} btntext="Войти" />}
+      {isLoading && <BtnLogin onClick={handleLogin} btntext="Выполняем вход" />}
+
       <S.btnReg onClick={handleRegistration}>Зарегистрироваться</S.btnReg>
     </S.container>
   )

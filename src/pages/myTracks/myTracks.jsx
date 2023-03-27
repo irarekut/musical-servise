@@ -1,16 +1,30 @@
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 import Nav from '../../components/nav/nav'
 import Bar from '../../components/bar/Bar'
 import * as S from './myTracks.styled'
 import CenterBlock from '../../components/centerBlock/CenterBlock'
 import SideBarPlaylist from '../../components/sideBar/sideBarPlaylist'
-import { MAINTRACKS } from '../../constants/MAINTRACKS'
+import { setTracksIds } from '../../store/slises/player'
+import { useGetAllTracksQuery } from '../../api/api'
 
 function MyTracks() {
+  const dispatch = useDispatch()
+  const { data } = useGetAllTracksQuery('')
+  const favoriteTracks =
+    useSelector((state) => state.favorite.favoriteTracks) || []
+  console.log(data)
+
+  const myTracks = data?.filter((val) => favoriteTracks.includes(val.id))
+
+  useEffect(() => {
+    dispatch(setTracksIds(favoriteTracks))
+  })
   return (
     <S.container>
       <S.main>
         <Nav />
-        <CenterBlock title="Мои треки" tracks={MAINTRACKS} />
+        <CenterBlock title="Мои треки" tracks={myTracks} />
         <SideBarPlaylist />
       </S.main>
       <Bar />

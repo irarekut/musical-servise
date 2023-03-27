@@ -46,3 +46,12 @@ export const button = styled.button`
   width: 100px;
   height: 50px;
 `
+
+export const ErrorMessage = styled.span`
+  color: red;
+  font-size: 12px;
+  text-align: center;
+  position: absolute;
+  max-width: 280px;
+  top: 220px;
+`

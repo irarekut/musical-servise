@@ -6,12 +6,20 @@ import React from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { Link } from 'react-router-dom'
+import { useGetPlaylistsQuery } from '../../api/api'
 import SkeletonSideBar from '../skeleton/SkeletonSideBar'
 import * as S from './sideBarBlock.styled'
-import { PLAYLISTS } from '../../constants/Playlists'
+import playlist01 from '../../img/playlist01.png'
+import playlist02 from '../../img/playlist02.png'
+import playlist03 from '../../img/playlist03.png'
 
 function BarBlock() {
-  const PL = PLAYLISTS
+  const plImg = [
+    { id: 1, img: playlist01 },
+    { id: 2, img: playlist02 },
+    { id: 3, img: playlist03 },
+  ]
+  const { data } = useGetPlaylistsQuery()
   const [isLoading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
@@ -35,10 +43,13 @@ function BarBlock() {
   return (
     <S.block>
       <S.list>
-        {PL?.map((play) => (
+        {data?.map((play) => (
           <S.item key={play.id}>
             <Link to={`/playlist/${play.id}`}>
-              <S.img src={play.img} alt="day's playlist" />
+              <S.img
+                src={plImg.find((p) => p.id === play.id).img}
+                alt="day's playlist"
+              />
             </Link>
           </S.item>
         ))}
