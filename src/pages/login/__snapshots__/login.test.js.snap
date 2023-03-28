@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login /> should render successfully and match snapshot 1`] = `
+<div>
+  <form
+    class="sc-jSUZER jBqxbm"
+  >
+    <div
+      class="sc-hLBbgP"
+    >
+      <img
+        alt="logo"
+        class="sc-eDvSVe qkmhQ"
+        src="logoLogin.png"
+        style="width: 113.33px; height: 17px;"
+      />
+    </div>
+    <div
+      class="sc-gKPRtg ifzBUm"
+    >
+      <div
+        class="sc-bcXHqe bRLOeJ"
+      >
+        <input
+          class="sc-gswNZR fbvIkD"
+          placeholder="e-mail"
+          type="email"
+          value=""
+        />
+        <span
+          class="sc-dkrFOg PdUkF"
+        />
+      </div>
+      <div
+        class="sc-bcXHqe bRLOeJ"
+      >
+        <input
+          class="sc-gswNZR fbvIkD"
+          placeholder="Пароль"
+          type="password"
+          value=""
+        />
+        <span
+          class="sc-dkrFOg PdUkF"
+        />
+      </div>
+    </div>
+    <button
+      class="sc-jrcTuL bRcizN"
+      type="submit"
+    >
+      Войти
+    </button>
+    <button
+      class="sc-iBYQkv cgxitR"
+    >
+      Зарегистрироваться
+    </button>
+  </form>
+</div>
+`;

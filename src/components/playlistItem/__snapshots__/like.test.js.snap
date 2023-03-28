@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TrackLike /> Snapshots tests should render successfully and match snapshot 1`] = `
+<div>
+  <button
+    class="sc-bcXHqe jFGtfv"
+  >
+    <svg
+      fill="transparent"
+      height="12"
+      stroke="#696969"
+      width="14"
+    >
+      <use
+        href="#like"
+      />
+    </svg>
+  </button>
+</div>
+`;

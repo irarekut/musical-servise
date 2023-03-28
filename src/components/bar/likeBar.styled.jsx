@@ -6,23 +6,6 @@ import Dislike from '../../img/icon/dislike.svg'
 const likeDis = {
   col: css`
     padding: 5px;
-    &:hover svg {
-      fill: transparent;
-      stroke: #acacac;
-      cursor: pointer;
-    }
-
-    &:active svg {
-      fill: transparent;
-      stroke: #ffffff;
-      cursor: pointer;
-    }
-
-    &:active {
-      fill: #696969;
-      stroke: #ffffff;
-      cursor: pointer;
-    }
   `,
 }
 
@@ -43,15 +26,10 @@ export const like = styled.div`
   ${titleMixin}
 `
 
-export function likeSvg() {
+export function likeSvg(props) {
+  const fill = props.active ? 'white' : 'transparent'
   return (
-    <HandySvg
-      src={Like}
-      width="14"
-      height="12"
-      fill="transparent"
-      stroke="#696969"
-    />
+    <HandySvg src={Like} width="14" height="12" fill={fill} stroke="#696969" />
   )
 }
 

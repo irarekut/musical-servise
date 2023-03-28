@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Registration /> should render successfully and match snapshot 1`] = `
+<div>
+  <form
+    class="sc-bcXHqe Owlbo"
+  >
+    <div
+      class="sc-gKPRtg"
+    >
+      <img
+        alt="logo"
+        class="sc-iBYQkv dVaHCF"
+        src="logoLogin.png"
+        style="width: 113.33px; height: 17px;"
+      />
+    </div>
+    <div
+      class="sc-dkrFOg hOZagT"
+    >
+      <input
+        class="sc-hLBbgP jktVYB"
+        placeholder="Логин"
+        type="text"
+        value=""
+      />
+      <span
+        class="sc-eDvSVe hhLcmt"
+      />
+    </div>
+    <div
+      class="sc-dkrFOg hOZagT"
+    >
+      <input
+        class="sc-hLBbgP jktVYB"
+        placeholder="Email"
+        type="email"
+        value=""
+      />
+      <span
+        class="sc-eDvSVe hhLcmt"
+      />
+    </div>
+    <div
+      class="sc-dkrFOg hOZagT"
+    >
+      <input
+        class="sc-hLBbgP jktVYB"
+        placeholder="Пароль"
+        type="password"
+        value=""
+      />
+      <span
+        class="sc-eDvSVe hhLcmt"
+      />
+    </div>
+    <div
+      class="sc-dkrFOg hOZagT"
+    >
+      <input
+        class="sc-hLBbgP jktVYB"
+        placeholder="Повторите пароль"
+        type="password"
+        value=""
+      />
+      <span
+        class="sc-eDvSVe hhLcmt"
+      />
+    </div>
+    <button
+      class="sc-jSUZER cyMTPi"
+      type="submit"
+    >
+      Зарегистрироваться
+    </button>
+  </form>
+</div>
+`;

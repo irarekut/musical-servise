@@ -3,7 +3,9 @@ import { HandySvg } from 'handy-svg'
 import Sun from '../img/icon/sun.svg'
 import Moon from '../img/icon/moon.svg'
 
-export const buttonTheme = styled.div`
+export const buttonTheme = styled.button`
+  background-color: #181818;
+  border: none;
   margin-top: 26px;
 `
 
