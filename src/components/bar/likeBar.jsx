@@ -29,16 +29,11 @@ export function LikeBar() {
     dispatch(
       removeFavoriteTrack({ id: currentTrackId, isFavorite: !isFavorite })
     )
-    console.log(favoriteTracks, 'delete')
   }
   return (
     <S.likeBar onClick={handleAddTrack}>
       <S.like>
-        {isFavorite === false ? (
-          <S.likeSvg alt="like" />
-        ) : (
-          <S.likeSvg alt="like" style={{ fill: '#ffffff' }} />
-        )}
+        <S.likeSvg alt="like" active={isFavorite} />
       </S.like>
       <S.dislike onClick={handleDeleteTrack}>
         <S.dislikeSvg alt="dislike" />

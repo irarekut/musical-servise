@@ -14,8 +14,8 @@ function Login() {
 
   const dispatch = useDispatch()
 
-  const [email, setEmail] = useState('iriri@gmail.com')
-  const [password, setPassword] = useState('1fleurforever')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleRegistration = (event) => {
     event.preventDefault()
@@ -50,7 +50,7 @@ function Login() {
       document.cookie = `token=${token?.refresh}`
       dispatch(setLogin())
     }
-  }, [token])
+  }, [isSuccess])
 
   return (
     <S.container>
@@ -59,7 +59,7 @@ function Login() {
         <Input
           id="email"
           type="email"
-          placeholder="Логин"
+          placeholder="e-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />

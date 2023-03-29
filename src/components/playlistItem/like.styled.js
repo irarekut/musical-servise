@@ -3,7 +3,10 @@ import styled from 'styled-components'
 import { HandySvg } from 'handy-svg'
 import Like from '../../img/icon/like.svg'
 
-export const like = styled.div``
+export const like = styled.button`
+  background-color: transparent;
+  border: none;
+`
 
 export function likeSvg(props) {
   const fill = props.active ? 'white' : 'transparent'
